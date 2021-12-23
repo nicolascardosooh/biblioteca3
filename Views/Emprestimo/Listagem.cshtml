@@ -1,0 +1,115 @@
+@model List<Emprestimo>
+@{
+    ViewData["Title"] = "Listagem de Empréstimos";
+    int FiltroPorPag = Int32.Parse(ViewData["EmprestimosPorPagina"].ToString());
+    int PaginaAtual = Int32.Parse(ViewData["PaginaAtual"].ToString());
+    int NumEmpPorPag = (Model.Count<FiltroPorPag ? Model.Count : FiltroPorPag);
+    int NumTotalDePag = 0;
+@if(NumEmpPorPag > 0){
+        NumTotalDePag = Model.Count / NumEmpPorPag + (Model.Count%NumEmpPorPag == 0 ? 0 : 1);
+    }
+    string classe = "";
+    
+}
+<div class="row">
+    <div class="col-md-12">
+   <form class="form-inline" method="POST">
+            <div class="form-group mb-2">
+                <select name="TipoFiltro" class="form-control">
+                    <option value="Usuario">Usuário</option>
+                    <option value="Livro">Livro</option>
+                </select>
+            </div>
+            <div class="form-group mb-2 mx-sm-3">
+                <input type="text" placeholder="Filtro" name="Filtro" class="form-control" />
+            </div>
+            <div class="form-group mb-2 mx-sm-3">
+                <select name="ItensPorPagina" id="ItensPorPagina">
+                    <option value="10">10 Emprestimos</option>
+                    <option value="15">15 Emprestimos</option>
+                    <option value="30">30 Emprestimos</option>
+                    <option value="@Model.Count">Todos</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
+
+            <div id="SeletorPaginas" class="form-group mb-2 mx-sm-3">
+                <span>Página: </span>
+                @for (int i = 1; i < NumTotalDePag; i++)
+                {
+                    <span><a href="/Emprestimo/Listagem?PaginaAtual=@i">@i, </a></span>
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <table class="table table-striped">
+            @if (Model.Count > 0)
+            {
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Usuario</th>
+                        <th>Data Empréstimo</th>
+                        <th>Data Devolução</th>
+                        <th>Livro</th>
+                        <th>Autor</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = (PaginaAtual - 1) * NumEmpPorPag; i < (NumEmpPorPag * PaginaAtual < Model.Count ?
+                   NumEmpPorPag * PaginaAtual : Model.Count); i++)
+                    {
+                        @foreach (Emprestimo e in Model)
+                        {
+                            @if ((System.DateTime.Compare(System.DateTime.Now, e.DataDevolucao) > 0) && !e.Devolvido)
+                            {
+                                classe = "text-danger";
+                            }
+                            else if (e.Devolvido)
+                            {
+                                classe = "text-success";
+                            }
+                            else
+                            {
+                                classe = "";
+                            }
+                            <tr>
+                                <td>@e.Id</td>
+                                <td>@e.NomeUsuario</td>
+                                <td>@e.DataEmprestimo.ToString("dd/MM/yyyy")</td>
+                                <td>@e.DataDevolucao.ToString("dd/MM/yyyy")</td>
+                                <td>@e.Livro.Titulo</td>
+                                <td>@e.Livro.Autor</td>
+                                <td><a href="/Emprestimo/Edicao/@Model[i].Id">Editar</a></td>
+                            </tr>
+                        }
+                            <tr>
+                                <td>@Model[i].Id</td>
+                                <td>@Model[i].NomeUsuario</td>
+                                <td>@Model[i].DataEmprestimo.ToString("dd/MM/yyyy")</td>
+                                <td>@Model[i].DataDevolucao.ToString("dd/MM/yyyy")</td>
+                                <td>@Model[i].Livro.Titulo</td>
+                                <td>@Model[i].Livro.Autor</td>
+                                <td><a href="/Emprestimo/Edicao/@Model[i].Id">Editar</a></td>
+                            </tr>
+
+                    }
+                    }
+                </tbody>
+            }
+            else
+            {
+                <p>Nenhum livro encontrado!</p>
+            }
+
+
+        </table>
+    </div>
+</div>
+
