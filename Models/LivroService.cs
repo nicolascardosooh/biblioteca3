@@ -6,24 +6,28 @@ namespace Biblioteca.Models
 {
     public class LivroService
     {
-        public void Inserir(Livro l)
+        public void Inserir(Livro  livro)
         {
             using (BibliotecaContext bc = new BibliotecaContext())
             {
-                bc.Livros.Add(l);
+                bc.Livros.Add(livro);
                 bc.SaveChanges();
             }
         }
 
-        public void Atualizar(Livro l)
+        public void Atualizar(Livro livro)
         {
             using (BibliotecaContext bc = new BibliotecaContext())
             {
-                Livro livro = bc.Livros.Find(l.Id);
-                livro.Autor = l.Autor;
-                livro.Titulo = l.Titulo;
+                 Livro livroAntigo = bc.Livros.Find(livro.Id);
+            
+                livroAntigo.Autor = livro.Autor;
+                
+                livroAntigo.Titulo = livro.Titulo;
+                
+                livroAntigo.Ano = livro.Ano;
 
-                livro.Ano = l.Ano;
+            
                 bc.SaveChanges();
             }
         }

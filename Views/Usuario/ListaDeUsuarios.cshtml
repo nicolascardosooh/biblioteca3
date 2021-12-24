@@ -1,35 +1,58 @@
 @model List<Usuario>
-    <h1>Usuários cadastrados</h1>
 
-    <p class="text-danger">@ViewData["mensagem"]</p>
+<h1 class="text-center">Usuários cadastrados no sistema</h1>
+<p class="text-center text-danger">@ViewData["mensagem"]</p>
 
-    <table class="table table-striped">
+<a style="padding: 10px;" href="RegistrarUsuarios">Cadastrar um novo usuário</a>
+
+
+<table class="table">
+   
+    @if(Model.Count > 0)
+    {
+        
         <thead>
+           
             <tr>
+                
                 <th scope="row">Nome</th>
                 <th scope="row">Login</th>
                 <th scope="row">Tipo</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
-        <tbody>
-            @foreach (Usuario u in Model)
-            {
-                <tr>
-                    <td>@u.Nome</td>
-                    <td>@u.Login</td>
-                    @if (u.Tipo == Usuario.admin)
-                    {
-                        <td>Administrador</td>
-                    }
-                    else
-                    {
-                        <td>Padrão</td>
-                    }
-                    <td><a href="EditarUsuario?id=@u.Id">Editar</a></td>
-                    <td><a href="ExcluirUsuario?id=@u.Id">Excluir</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    }
+    else
+    {
+        <br><br>
+        <h4 class="text-center">Não há valores para serem exibidos</h4>
+    }
 
-    <a href="RegistrarUsuarios">Registrar novo usuário</a> 
+    
+    <tbody>
+      
+        @foreach(Usuario usuario in Model)
+        {
+            <tr>
+               
+                <td>@usuario.Nome</td>
+                <td>@usuario.Login</td>
+
+                
+                @if (usuario.Tipo == Usuario.admin)
+                {
+                    <td>Administrador</td>
+                }
+                else
+                {
+                    <td>Padrão</td>
+                }
+
+                
+                <td><a href="EditarUsuario?id=@usuario.Id">Editar</a></td>
+                <td><a href="ExcluirUsuario?id=@usuario.Id">Excluir</a></td>
+            </tr>
+        }
+    </tbody>
+</table> 
