@@ -37,7 +37,7 @@ namespace Biblioteca.Controllers
         public IActionResult EditarUsuario(int id)
         {
             Usuario u = new UsuarioService().BuscarporId(id);
-            return View();
+            return View(u);
         }
 
         [HttpPost]
@@ -49,7 +49,8 @@ namespace Biblioteca.Controllers
 
         public IActionResult ExcluirUsuario(int id)
         {
-            return View(new UsuarioService().Listar());
+             Usuario u = new UsuarioService().BuscarporId(id);
+            return View(u);
         }
 
         [HttpPost]

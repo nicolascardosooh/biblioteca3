@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nicolas\\Desktop\\ATIVIDADE2\\Biblioteca\\Biblioteca.csproj": {}
+    "C:\\Users\\Nicolas\\Desktop\\N icolas\\ATIVIDADE2\\Biblioteca\\Biblioteca.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nicolas\\Desktop\\ATIVIDADE2\\Biblioteca\\Biblioteca.csproj": {
+    "C:\\Users\\Nicolas\\Desktop\\N icolas\\ATIVIDADE2\\Biblioteca\\Biblioteca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nicolas\\Desktop\\ATIVIDADE2\\Biblioteca\\Biblioteca.csproj",
+        "projectUniqueName": "C:\\Users\\Nicolas\\Desktop\\N icolas\\ATIVIDADE2\\Biblioteca\\Biblioteca.csproj",
         "projectName": "Biblioteca",
-        "projectPath": "C:\\Users\\Nicolas\\Desktop\\ATIVIDADE2\\Biblioteca\\Biblioteca.csproj",
+        "projectPath": "C:\\Users\\Nicolas\\Desktop\\N icolas\\ATIVIDADE2\\Biblioteca\\Biblioteca.csproj",
         "packagesPath": "C:\\Users\\Nicolas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nicolas\\Desktop\\ATIVIDADE2\\Biblioteca\\obj\\",
+        "outputPath": "C:\\Users\\Nicolas\\Desktop\\N icolas\\ATIVIDADE2\\Biblioteca\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nicolas\\AppData\\Roaming\\NuGet\\NuGet.Config"
